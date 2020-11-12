@@ -1,5 +1,12 @@
 # Node Shortcuts
 
+From the terminal, once inside the directory for the repo, make it a node repo:
+```
+npm init
+```
+
+This will allow you to set up the JSON file
+
 Code to put in the header of the main file in order to import aspects from the reference file:
 ```javascript
 const { beBasic, add, subtract } = require('./myModule')
