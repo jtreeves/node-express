@@ -48,3 +48,39 @@ To ensure that GitHub doesn't import your local copies of Node modules, add a `.
 
 ## Using Node
 In the terminal, run the code for a Node repository by typing `node index.js` (or `nodemon` if Nodemon is installed).
+
+## Set Up Express
+```
+npm i express
+```
+
+## Create Route within Express
+Header:
+```javascript
+const app = express()
+```
+
+## Sending Text from Server Back to Client
+```
+npm i ejs
+```
+
+Header:
+```javascript
+app.set('view engine', 'ejs')
+```
+
+## Sending HTML to the Client Using a View Template
+```javascript
+app.get('/', function(req, res) {
+    res.render('index')
+})
+```
+
+## Referencing Variables in a View Template
+```html
+ <h1>We're gonna count to ten:</h1>
+ <% for (let i =1; i<11; i++){ %>
+     <p><%= i %></p>
+ <% } %>
+ ```
