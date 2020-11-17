@@ -84,3 +84,12 @@ app.get('/', function(req, res) {
      <p><%= i %></p>
  <% } %>
  ```
+
+## Creating Partials
+These let you insert text chunks into pieces of various web pages, and if you change them in one place, they will render changes in all other places where they are located. This facilitates DRY code.
+
+ ## Creating Layouts
+ While partials act on a sub-level, layouts act on a super-level. They allow you to modify the appearance of the entire visual layout of every page (or set of pages) on a website. Instead of inserting partials everywhere, layouts allow you to establish a single design that will wrap around every subsequent page. This facilitates even DRY-er code.
+
+ ## Creating Controllers
+ These help you break out functionality by type. They take the site and break it up into chunks, with certain chunks being controlled by one controller and certain other chunks controlled by another controller.
