@@ -88,8 +88,51 @@ app.get('/', function(req, res) {
 ## Creating Partials
 These let you insert text chunks into pieces of various web pages, and if you change them in one place, they will render changes in all other places where they are located. This facilitates DRY code.
 
- ## Creating Layouts
- While partials act on a sub-level, layouts act on a super-level. They allow you to modify the appearance of the entire visual layout of every page (or set of pages) on a website. Instead of inserting partials everywhere, layouts allow you to establish a single design that will wrap around every subsequent page. This facilitates even DRY-er code.
+Insert cody like this somewhere in an ejs file. This will make the page put whatever content appears in the `nav.ejs` file at the where ever you place it on the page:
+```html
+<%- include('nav') %> 
+```
 
- ## Creating Controllers
- These help you break out functionality by type. They take the site and break it up into chunks, with certain chunks being controlled by one controller and certain other chunks controlled by another controller.
+## Creating Layouts
+While partials act on a sub-level, layouts act on a super-level. They allow you to modify the appearance of the entire visual layout of every page (or set of pages) on a website. Instead of inserting partials everywhere, layouts allow you to establish a single design that will wrap around every subsequent page. This facilitates even DRY-er code.
+
+Create an `index.ejs` file and fill it with code like this:
+```html
+<body>
+    <h1>Express Calculator!</h1>
+    <p><a href="/">Instructions</a></p>
+    <%- body %> 
+</body>
+```
+
+This establishes what the general framework of the site will be, and the unique content on the pages would be inserted into the `body` part of the ejs tag.
+
+## Creating Controllers
+These help you break out functionality by type. They take the site and break it up into chunks, with certain chunks being controlled by one controller and certain other chunks controlled by another controller.
+
+To create a controller, put code like this in the header of a controller file:
+```javascript
+const mathController = require('express').Router()
+```
+
+This code contains the actual heart of the controller. Put code like it in the body of a controller file:
+```javascript
+mathController.get('/double/:number', (req, res) => {
+    res.render('math/double', { number: req.params.number })
+})
+```
+
+To make a controller available for the project at large, put code like this in the footer of a controller file:
+```javascript
+module.exports = mathController
+```
+
+To import a controller into the `index.js` file, put code like this in the file's header:
+```javascript
+const mathController = require('./controllers/mathController')
+```
+
+Code like this in the body of the `index.js` file will invoke the controller and delegate it to a particular part of the site:
+```javascript
+app.use('/math', mathController)
+```
